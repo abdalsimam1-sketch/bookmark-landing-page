@@ -1,0 +1,35 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --blue-950: #242a45;
+  --blue-600: #5267df;
+  --grey-600: #5b6074;
+  --grey-50: #f7f7f7;
+  --red-400: #fa5959;
+}
+
+.btn.nav-btn {
+  background-color: var(--red-400);
+  color: var(--white);
+}
+.btn.nav-btn:hover {
+  background-color: var(--red-400);
+}
+div a {
+  text-decoration: none;
+  color: var(--black);
+}
+.hero-btns .hero-btn-1 {
+  background-color: var(--blue-600);
+}
+
+.hero-btns .hero-btn-1:hover {
+  background-color: var(--blue-600);
+}
+
+.hero-btns .hero-btn-2 {
+  background-color: var(--grey-50);
+}
+.hero-btns .hero-btn-2:hover {
+  background-color: var(--grey-50);
+}
