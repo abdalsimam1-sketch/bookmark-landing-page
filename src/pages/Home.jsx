@@ -11,6 +11,13 @@ import logo from "../assets/images/logo-bookmark.svg";
 export const Home = () => {
   const lorem = new LoremIpsum();
   const [activeFeature, setActiveFeature] = useState("simple");
+  const [openFaqs, setOpenFaqs] = useState([]);
+
+  const toggleFaqs = (index) => {
+    setOpenFaqs((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
+    );
+  };
 
   const faqs = [
     {
@@ -48,8 +55,8 @@ export const Home = () => {
   };
   return (
     <>
-      <main>
-        <section className="hero-section d-flex flex-column flex-md-row px-5 justify-content-around ">
+      <main className="">
+        <section className="hero-section d-flex flex-column flex-md-row px-5 justify-content-center ">
           <div className="col-md-4 d-flex flex-column justify-content-center order-2 order-md-1 text-center text-md-start">
             {" "}
             <h1>A Simple Bookmark Manager</h1>
@@ -98,7 +105,7 @@ export const Home = () => {
               Easy Sharing
             </div>
           </div>
-          <div className="d-flex flex-column flex-md-row  gap-3 justify-content-around">
+          <div className="d-flex flex-column flex-md-row  gap-3 justify-content-center">
             <div>
               <img
                 src={features[activeFeature].img}
@@ -109,6 +116,9 @@ export const Home = () => {
             <div className="col-md-5  text-md-start d-flex flex-column justify-content-center">
               <h1>{features[activeFeature].title}</h1>
               <p className="text-muted">{features[activeFeature].text}</p>
+              <button className="btn more-info align-self-md-start ">
+                More Info
+              </button>
             </div>
           </div>
         </section>
@@ -162,17 +172,43 @@ export const Home = () => {
           </div>
         </section>
 
-        <section className="faq-section col-md-6 mx-auto text-center">
-          <div>
+        <section className="faq-section col-md-6 mx-auto mb-5 ">
+          <div className="text-center">
             <h1 className="">Frequently Asked Questions</h1>
-            <p className="text-muted">
+            <p className="text-muted ">
               How are some of our FAQs. If you have any other questions you'd
               like answered please feel free to email us.
             </p>
           </div>
-          {faqs.map((faq, index) => (
-            <h3 key={index}>{faq.question}</h3>
-          ))}
+          {faqs.map((faq, index) => {
+            const isOpen = openFaqs.includes(index);
+            return (
+              <div
+                className="mx-5  "
+                key={index}
+                style={{ borderBottom: "1px solid grey" }}
+              >
+                <div
+                  className="d-flex justify-content-between align-items-center"
+                  onClick={() => toggleFaqs(index)}
+                >
+                  {" "}
+                  <p> {faq.question}</p>
+                  <i className="bi bi-chevron-down arrow-down fs-2 text-primary"></i>
+                  {}
+                </div>
+                {isOpen && (
+                  <div
+                    className="answers text-muted rounded"
+                    style={{ border: "1px solid grey" }}
+                  >
+                    {" "}
+                    <p className="">{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </section>
 
         <section className="contact-section p-5 text-center text-white">

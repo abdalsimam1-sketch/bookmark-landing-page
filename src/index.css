@@ -44,7 +44,9 @@ div a {
 .cards .downloads-btn:hover {
   background-color: var(--blue-600);
 }
-.contact-section {
+.contact-section,
+button.more-info,
+button.more-info:hover {
   background-color: var(--blue-600);
 }
 .contact-section .contact-btn {
@@ -82,4 +84,8 @@ div a {
 }
 .active {
   border-bottom: 2px solid red !important;
+}
+
+.arroe-down {
+  color: var(--blue-600) !important;
 }

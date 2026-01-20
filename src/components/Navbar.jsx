@@ -6,7 +6,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="d-flex justify-content-between p-5 align-items-center">
+      <nav className="d-flex justify-content-around py-5 align-items-center">
         <div>
           <img src={logo} alt="logo" />
         </div>
