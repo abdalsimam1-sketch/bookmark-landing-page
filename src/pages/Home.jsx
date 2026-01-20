@@ -4,8 +4,27 @@ import featurePic from "../assets/images/illustration-features-tab-1.svg";
 import chrome from "../assets/images/logo-chrome.svg";
 import firefox from "../assets/images/logo-firefox.svg";
 import opera from "../assets/images/logo-opera.svg";
+import { LoremIpsum } from "lorem-ipsum";
+import logo from "../assets/images/logo-bookmark.svg";
 export const Home = () => {
+  const lorem = new LoremIpsum();
   const [activeFeature, setActiveFeature] = useState();
+  const faqs = [
+    {
+      question: "What is Bookmark",
+      answer:
+        "Bookmark is a tool that helps you organize your bookmarks efficiently",
+    },
+    {
+      question: "How can i request a new browser",
+      answer: lorem.generateWords(),
+    },
+    { question: "Is there a mobile app", answer: lorem.generateWords() },
+    {
+      question: "What about other Chronium browsers",
+      answer: lorem.generateWords(),
+    },
+  ];
   return (
     <>
       <main>
@@ -57,7 +76,7 @@ export const Home = () => {
             </div>
           </div>
         </section>
-        <section className="download-section text-center">
+        <section className="download-section text-center ">
           <div className="col-md-5 mx-auto ">
             <h1>Download the extension</h1>
             <p className="text-muted">
@@ -65,7 +84,7 @@ export const Home = () => {
               youve got a favorite you'd like us to prioritize
             </p>
           </div>
-          <div className="cards d-flex justify-content-around col-md-7 mx-auto">
+          <div className="cards d-flex  justify-content-around col-md-7 mx-auto ">
             <div className="card shadow">
               <div className="card-body p-5">
                 <img src={chrome} alt="" className="mx-auto" />
@@ -112,6 +131,48 @@ export const Home = () => {
             </div>
           </div>
         </section>
+
+        <section className="faq-section col-md-6 mx-auto text-center">
+          <div>
+            <h1 className="">Frequently Asked Questions</h1>
+            <p className="text-muted">
+              How are some of our FAQs. If you have any other questions you'd
+              like answered please feel free to email us.
+            </p>
+          </div>
+          {faqs.map((faq, index) => (
+            <h3 key={index}>{faq.question}</h3>
+          ))}
+        </section>
+
+        <section className="contact-section p-5 text-center text-white">
+          <div className="col-md-6 mx-auto mb-4">
+            {" "}
+            <h4>35,000+ ALREADY JOINED</h4>
+            <h1 className="">Stay up-to-date with what we're doing</h1>
+          </div>
+          <div className="contact-input d-flex gap-3 justify-content-center">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter your email address"
+            />
+            <button className="btn contact-btn">Contact Us</button>
+          </div>
+        </section>
+
+        <footer className="footer p-5 text-white d-flex justify-content-around ">
+          <div className="d-flex gap-4">
+            <img src={logo} alt="" className="bg-white " />
+            <a href="">FEATURES</a>
+            <a href="">PRICING</a>
+            <a href="">CONTACT</a>
+          </div>
+          <div className="d-flex gap-4">
+            <i className="bi bi-facebook"></i>
+            <i className="bi bi-twitter"></i>
+          </div>
+        </footer>
       </main>
     </>
   );
