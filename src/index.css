@@ -44,9 +44,6 @@ div a {
 .cards .downloads-btn:hover {
   background-color: var(--blue-600);
 }
-.faq-section {
-  margin-top: 15%;
-}
 .contact-section {
   background-color: var(--blue-600);
 }
@@ -76,4 +73,13 @@ div a {
 }
 .btn {
   white-space: nowrap;
+}
+.menu {
+  background-color: var(--blue-950);
+}
+.menu a {
+  color: var(--white);
+}
+.active {
+  border-bottom: 2px solid red !important;
 }

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import heroPic from "../assets/images/illustration-hero.svg";
-import featurePic from "../assets/images/illustration-features-tab-1.svg";
+import featurePic1 from "../assets/images/illustration-features-tab-1.svg";
+import featurePic2 from "../assets/images/illustration-features-tab-2.svg";
+import featurePic3 from "../assets/images/illustration-features-tab-3.svg";
 import chrome from "../assets/images/logo-chrome.svg";
 import firefox from "../assets/images/logo-firefox.svg";
 import opera from "../assets/images/logo-opera.svg";
@@ -8,7 +10,8 @@ import { LoremIpsum } from "lorem-ipsum";
 import logo from "../assets/images/logo-bookmark.svg";
 export const Home = () => {
   const lorem = new LoremIpsum();
-  const [activeFeature, setActiveFeature] = useState();
+  const [activeFeature, setActiveFeature] = useState("simple");
+
   const faqs = [
     {
       question: "What is Bookmark",
@@ -25,11 +28,29 @@ export const Home = () => {
       answer: lorem.generateWords(),
     },
   ];
+
+  const features = {
+    simple: {
+      img: featurePic1,
+      title: "Bookmark in one click",
+      text: "Organize your bookmarks however you like.Our simple drag-and-drop interface gives you complete control over how youmanage your favorite sites",
+    },
+    speedy: {
+      img: featurePic2,
+      title: "Intelligent search",
+      text: "Our powerful search feature will help you find sites in no time at all.No need to trawl through all of your bookmarks ",
+    },
+    easy: {
+      img: featurePic3,
+      title: "Share your bookmarks",
+      text: "Easily share your bookmarks and collections with others.Create a sharable link that you can send at the click of a button",
+    },
+  };
   return (
     <>
       <main>
-        <section className="hero-section d-flex px-5 justify-content-around ">
-          <div className="col-md-4 d-flex flex-column justify-content-center">
+        <section className="hero-section d-flex flex-column flex-md-row px-5 justify-content-around ">
+          <div className="col-md-4 d-flex flex-column justify-content-center order-2 order-md-1 text-center text-md-start">
             {" "}
             <h1>A Simple Bookmark Manager</h1>
             <p className="text-muted">
@@ -37,19 +58,19 @@ export const Home = () => {
               websites.Open a new browser tab and see your sites load instantly.
               Try it for free.
             </p>
-            <div className="hero-btns d-flex gap-3">
+            <div className="hero-btns d-flex gap-3 mx-auto mx-md-0 mb-4">
               <button className="btn hero-btn-1" style={{ minWidth: "5rem" }}>
                 Get it on Chrome
               </button>
               <button className="btn hero-btn-2">Get it on FireFox</button>
             </div>
           </div>
-          <div className="">
+          <div className=" order-1 order-md-2">
             <img src={heroPic} alt="" className="img-fluid" />
           </div>
         </section>
         <section className="features-section text-center px-5 mb-5">
-          <div className="col-md-6 mx-auto mb-5">
+          <div className="col-md-6 mx-auto mb-5 text-center">
             <h1>Features</h1>
             <p className="text-muted ">
               Our aim is to make it quick and easy for you to access your
@@ -57,22 +78,37 @@ export const Home = () => {
               you can access them on the go{"."}
             </p>
           </div>
-          <div className="d-flex gap-5 justify-content-center mb-5">
-            <div className="btn">Simple Bookmarking</div>
-            <div className="btn">Speedy Searching</div>
-            <div className="btn">Easy Sharing</div>
-          </div>
-          <div className="d-flex  gap-3 justify-content-around">
-            <div>
-              <img src={featurePic} alt="feature pic" className="img-fluid" />
+          <div className="d-flex flex-column flex-md-row gap-3 justify-content-center  mb-5 gap-md-5">
+            <div
+              className={`card btn ${activeFeature === "simple" ? "active" : ""}`}
+              onClick={() => setActiveFeature("simple")}
+            >
+              Simple Bookmarking
             </div>
-            <div className="col-md-5 ">
-              <h1>Bookmark in one click</h1>
-              <p className="text-muted">
-                Organize your bookmarks however you like.Our simple
-                drag-and-drop interface gives you complete control over how you
-                manage your favorite sites
-              </p>
+            <div
+              className={`card btn ${activeFeature === "speedy" ? "active" : ""}`}
+              onClick={() => setActiveFeature("speedy")}
+            >
+              Speedy Searching
+            </div>
+            <div
+              className={`card btn ${activeFeature === "easy" ? "active" : ""}`}
+              onClick={() => setActiveFeature("easy")}
+            >
+              Easy Sharing
+            </div>
+          </div>
+          <div className="d-flex flex-column flex-md-row  gap-3 justify-content-around">
+            <div>
+              <img
+                src={features[activeFeature].img}
+                alt="feature pic"
+                className="img-fluid"
+              />
+            </div>
+            <div className="col-md-5  text-md-start d-flex flex-column justify-content-center">
+              <h1>{features[activeFeature].title}</h1>
+              <p className="text-muted">{features[activeFeature].text}</p>
             </div>
           </div>
         </section>
@@ -84,8 +120,8 @@ export const Home = () => {
               youve got a favorite you'd like us to prioritize
             </p>
           </div>
-          <div className="cards d-flex  justify-content-around col-md-7 mx-auto ">
-            <div className="card shadow">
+          <div className="cards d-flex flex-column flex-md-row col-md-7 mx-auto gap-5 mb-5">
+            <div className="card shadow col-10 mx-auto col-md-6 col-lg-4 ">
               <div className="card-body p-5">
                 <img src={chrome} alt="" className="mx-auto" />
                 <h5>Add to Chrome</h5>
@@ -97,10 +133,7 @@ export const Home = () => {
                 </button>
               </footer>
             </div>
-            <div
-              className="card shadow"
-              style={{ transform: "translateY(50px)" }}
-            >
+            <div className="card shadow col-10 mx-auto col-md-6 col-lg-4 ">
               <div className="card-body p-5">
                 <img src={firefox} alt="" className="mx-auto" />
                 <h5>Add to Firefox</h5>
@@ -113,10 +146,7 @@ export const Home = () => {
                 </button>
               </footer>
             </div>
-            <div
-              className="card shadow "
-              style={{ transform: "translateY(100px)" }}
-            >
+            <div className="card shadow  col-10 mx-auto col-md-6 col-lg-4">
               <div className="card-body p-5">
                 <img src={opera} alt="" className="mx-auto" />
                 <h5>Add to Opera</h5>
@@ -161,9 +191,14 @@ export const Home = () => {
           </div>
         </section>
 
-        <footer className="footer p-5 text-white d-flex justify-content-around ">
-          <div className="d-flex gap-4">
-            <img src={logo} alt="" className="bg-white " />
+        <footer className="footer p-5 text-white d-flex flex-column  flex-md-row justify-content-around align-items-center gap-4 ">
+          <div className="d-flex  flex-column flex-md-row align-items-center  gap-4">
+            <img
+              src={logo}
+              alt=""
+              className="bg-white "
+              style={{ width: "10rem" }}
+            />
             <a href="">FEATURES</a>
             <a href="">PRICING</a>
             <a href="">CONTACT</a>
